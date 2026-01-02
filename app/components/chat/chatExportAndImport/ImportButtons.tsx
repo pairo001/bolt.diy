@@ -31,7 +31,6 @@ export function ImportButtons(importChat: ((description: string, messages: Messa
                   if (Array.isArray(data.messages)) {
                     await importChat(data.description || 'Imported Chat', data.messages);
                     toast.success('Chat imported successfully');
-
                     return;
                   }
 
