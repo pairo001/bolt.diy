@@ -30,11 +30,11 @@ export default class GoogleProvider extends BaseProvider {
   }): LanguageModelV1 {
     const { model, serverEnv, apiKeys, providerSettings } = options;
 
-    const { apiKey } = this.getProviderBaseUrlAndKey({
+    const { apiKey, baseURL } = this.getProviderBaseUrlAndKey({
       apiKeys,
       providerSettings: providerSettings?.[this.name],
       serverEnv: serverEnv as any,
-      defaultBaseUrlKey: '',
+      defaultBaseUrlKey: 'GOOGLE_API_BASE_URL',
       defaultApiTokenKey: 'GOOGLE_GENERATIVE_AI_API_KEY',
     });
 
@@ -44,6 +44,7 @@ export default class GoogleProvider extends BaseProvider {
 
     const google = createGoogleGenerativeAI({
       apiKey,
+      baseURL,
     });
 
     return google(model);
